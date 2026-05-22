@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CREO — Платформа для навчання сучасним діджитал професіям</title>
+<meta name="description" content="Онлайн школа дизайну CREO. Навчаємо сучасним діджитал-професіям, допомагаємо вийти на фріланс та працювати на себе.">
+<link rel="icon" href="https://cdn.prod.website-files.com/626fc70a78a2e44c54a1a427/62d8126509514d49134847b9_creo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --white: #ffffff;
+    --bg: #ffffff;
+    --bg-soft: #f5f7fc;
+    --bg-soft2: #eef2fb;
+    --ink: #0f1426;
+    --ink-2: #2c3450;
+    --gray: #69708a;
+    --gray-light: #9aa1b8;
+    --line: #e8ecf6;
+
+    --blue: #2f6bff;
+    --blue-dark: #1e4fd9;
+    --cyan: #18c8ff;
+    --purple: #7c5cff;
+    --pink: #f959f9;
+    --orange: #ff9b2f;
+    --green: #18c08a;
+
+    --grad-blue: linear-gradient(135deg, #2f6bff 0%, #18c8ff 100%);
+    --grad-purple: linear-gradient(135deg, #7c5cff 0%, #2f6bff 100%);
+    --grad-warm: linear-gradient(135deg, #ff9b2f 0%, #f959f9 100%);
+    --grad-mesh: radial-gradient(at 0% 0%, rgba(124,92,255,.12) 0px, transparent 50%),
+                 radial-gradient(at 100% 0%, rgba(47,107,255,.14) 0px, transparent 50%),
+                 radial-gradient(at 80% 100%, rgba(24,200,255,.10) 0px, transparent 50%);
+
+    --shadow-sm: 0 2px 8px rgba(15,20,38,.05);
+    --shadow: 0 12px 40px rgba(15,20,38,.08);
+    --shadow-lg: 0 24px 70px rgba(15,20,38,.14);
+    --shadow-blue: 0 16px 40px rgba(47,107,255,.28);
+
+    --r-sm: 14px;
+    --r: 22px;
+    --r-lg: 30px;
+    --r-pill: 100px;
+
+    --maxw: 1240px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4 { font-family: 'Manrope', sans-serif; line-height: 1.12; letter-spacing: -.02em; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ───────── BUTTONS ───────── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700; font-size: 15px;
+    padding: 14px 28px; border-radius: var(--r-pill);
+    cursor: pointer; border: none; transition: .25s ease; white-space: nowrap;
+  }
+  .btn-primary { background: var(--grad-blue); color: #fff; box-shadow: var(--shadow-blue); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 50px rgba(47,107,255,.4); }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-dark:hover { transform: translateY(-2px); background: #1a2240; }
+  .btn-ghost { background: var(--white); color: var(--ink); border: 1.5px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+  .btn-light { background: rgba(255,255,255,.15); color: #fff; border: 1.5px solid rgba(255,255,255,.3); backdrop-filter: blur(8px); }
+  .btn-light:hover { background: rgba(255,255,255,.25); }
+  .btn-lg { padding: 17px 36px; font-size: 16px; }
+  .btn-block { width: 100%; }
+
+  /* ───────── HEADER ───────── */
+  header {
+    position: fixed; inset: 0 0 auto 0; z-index: 1000;
+    background: rgba(255,255,255,.8);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid transparent;
+    transition: .3s;
+  }
+  header.scrolled { border-color: var(--line); box-shadow: var(--shadow-sm); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+  .logo img { height: 28px; filter: brightness(0); }
+  nav.menu { display: flex; gap: 34px; }
+  nav.menu a { font-size: 15px; font-weight: 500; color: var(--ink-2); transition: .2s; position: relative; }
+  nav.menu a::after {
+    content:''; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px;
+    background: var(--grad-blue); border-radius: 2px; transition: width .25s;
+  }
+  nav.menu a:hover { color: var(--blue); }
+  nav.menu a:hover::after { width: 100%; }
+  .nav-actions { display: flex; align-items: center; gap: 14px; }
+  .login-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; color: var(--ink); }
+  .login-link img { width: 18px; height: 18px; }
+  .login-link:hover { color: var(--blue); }
+  .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+  .burger span { width: 24px; height: 2.5px; background: var(--ink); border-radius: 2px; transition: .3s; }
+
+  /* ───────── HERO ───────── */
+  .hero { position: relative; padding: 150px 0 90px; overflow: hidden; background: var(--bg); }
+  .hero::before { content:''; position: absolute; inset: 0; background: var(--grad-mesh); pointer-events: none; }
+  .hero-grid { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+    padding: 7px 16px 7px 8px; border-radius: var(--r-pill); font-size: 13px; font-weight: 600; color: var(--ink-2);
+    margin-bottom: 26px;
+  }
+  .pill .dot { width: 26px; height: 26px; border-radius: 50%; background: var(--grad-blue); display: grid; place-items: center; font-size: 13px; }
+  .hero h1 { font-size: 54px; font-weight: 800; margin-bottom: 22px; }
+  .hero h1 .g { background: var(--grad-blue); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p.lead { font-size: 19px; color: var(--gray); max-width: 540px; margin-bottom: 34px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 46px; }
+  .hero-stats { display: flex; gap: 38px; flex-wrap: wrap; }
+  .stat .num { font-family: 'Manrope'; font-size: 38px; font-weight: 800; background: var(--grad-purple); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat .lbl { font-size: 13px; color: var(--gray); font-weight: 500; max-width: 130px; }
+
+  /* hero visual — browser mock with real platform screenshot */
+  .hero-visual { position: relative; }
+  .browser { border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg); background: #fff; border: 1px solid var(--line); }
+  .browser-bar { height: 40px; background: #eef1f8; display: flex; align-items: center; gap: 7px; padding: 0 16px; border-bottom: 1px solid var(--line); }
+  .browser-bar i { width: 11px; height: 11px; border-radius: 50%; }
+  .browser-bar .u { margin-left: 14px; background: #fff; border: 1px solid var(--line); border-radius: 7px; font-size: 11px; color: var(--gray); padding: 4px 14px; }
+  .browser-body { position: relative; line-height: 0; }
+  .browser-body .shot { width: 100%; display: block; }
+  .play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 88px; height: 88px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+    background: var(--pink); display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 16px 38px rgba(249,89,249,.5); z-index: 4;
+    animation: playGlow 1.5s ease-in-out infinite;
+  }
+  .play-btn svg { width: 34px; height: 34px; fill: #fff; margin-left: 5px; }
+  .play-btn:hover { background: #ff6dff; }
+  @keyframes playGlow {
+    0%, 100% { box-shadow: 0 16px 38px rgba(249,89,249,.45), 0 0 0 0 rgba(249,89,249,.55); }
+    50%      { box-shadow: 0 16px 38px rgba(249,89,249,.45), 0 0 0 20px rgba(249,89,249,0); }
+  }
+  .float-card {
+    position: absolute; background: var(--white); border-radius: 16px; box-shadow: var(--shadow);
+    padding: 13px 17px; display: flex; align-items: center; gap: 12px; z-index: 3;
+  }
+  .float-card .ic { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; flex-shrink: 0; }
+  .float-card .t1 { font-family: 'Manrope'; font-weight: 800; font-size: 15px; }
+  .float-card .t2 { font-size: 11.5px; color: var(--gray); }
+  .fc-1 { top: 64px; left: -36px; animation: float 5s ease-in-out infinite; }
+  .fc-2 { bottom: 24px; right: -28px; animation: float 6s ease-in-out infinite .8s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+  /* ───────── SECTION HEADERS ───────── */
+  section { padding: 90px 0; }
+  .sec-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Manrope'; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--blue); background: rgba(47,107,255,.09); padding: 7px 16px; border-radius: var(--r-pill); margin-bottom: 18px;
+  }
+  .sec-head { max-width: 700px; }
+  .sec-head.center { margin: 0 auto; text-align: center; }
+  .sec-title { font-size: 44px; font-weight: 800; margin-bottom: 16px; }
+  .sec-sub { font-size: 18px; color: var(--gray); }
+  .sec-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 50px; flex-wrap: wrap; }
+
+  /* ───────── CTA STRIP ───────── */
+  .cta-strip { padding: 0; }
+  .cta-strip .box {
+    background: var(--ink); color: #fff; border-radius: var(--r-lg); padding: 50px 56px;
+    display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+    position: relative; overflow: hidden;
+  }
+  .cta-strip .box::before {
+    content:''; position: absolute; top: -60%; right: -5%; width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(47,107,255,.5), transparent 65%); pointer-events: none;
+  }
+  .cta-strip h3 { font-size: 30px; font-weight: 800; position: relative; }
+  .cta-strip p { color: rgba(255,255,255,.7); margin-top: 8px; position: relative; }
+
+  /* ───────── COURSES ───────── */
+  .courses { background: var(--bg-soft); }
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+  .filter {
+    padding: 10px 20px; border-radius: var(--r-pill); border: 1.5px solid var(--line); background: var(--white);
+    font-family: 'Manrope'; font-weight: 600; font-size: 14px; color: var(--gray); cursor: pointer; transition: .2s;
+  }
+  .filter.active, .filter:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .course-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; }
+  .course {
+    background: var(--white); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line); transition: .3s; display: flex; flex-direction: column;
+  }
+  .course:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+  .course.big { grid-column: span 2; }
+  .course-cover { aspect-ratio: 16/9; position: relative; overflow: hidden; background: var(--bg-soft2); line-height: 0; }
+  .course.big .course-cover { aspect-ratio: 16/7.4; }
+  .course-cover img { width: 100%; height: 100%; object-fit: cover; transition: .4s; }
+  .course:hover .course-cover img { transform: scale(1.05); }
+  .course-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+  .chips { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
+  .chip { font-family: 'Manrope'; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; padding: 4px 11px; border-radius: var(--r-pill); }
+  .chip.blue { color: var(--blue); background: rgba(47,107,255,.1); }
+  .chip.purple { color: var(--purple); background: rgba(124,92,255,.1); }
+  .chip.green { color: var(--green); background: rgba(24,192,138,.12); }
+  .chip.orange { color: var(--orange); background: rgba(255,155,47,.13); }
+  .chip.pink { color: #d63bd6; background: rgba(249,89,249,.1); }
+  .course h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+  .course p { font-size: 14.5px; color: var(--gray); margin-bottom: 20px; flex: 1; }
+  .course-foot { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--line); }
+  .course-foot .dur { font-size: 13px; color: var(--gray); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .course-foot .more { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: var(--blue); display: flex; align-items: center; gap: 6px; transition: gap .2s; }
+  .course:hover .more { gap: 11px; }
+
+  /* ───────── ABOUT ───────── */
+  .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
+  .founder-visual { position: relative; }
+  .founder-photo { aspect-ratio: 4/4.7; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-lg); background: linear-gradient(160deg,#7c5cff,#2f6bff); }
+  .founder-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .founder-badge { position: absolute; bottom: 26px; left: -26px; background: var(--white); border-radius: 18px; padding: 18px 22px; box-shadow: var(--shadow); max-width: 240px; }
+  .founder-badge .name { font-family: 'Manrope'; font-weight: 800; font-size: 17px; }
+  .founder-badge .role { font-size: 13px; color: var(--gray); }
+  .quote { font-size: 25px; font-weight: 600; font-family: 'Manrope'; line-height: 1.4; margin-bottom: 28px; color: var(--ink); }
+  .quote .mark { color: var(--blue); }
+  .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 34px; }
+  .af { display: flex; gap: 14px; }
+  .af .ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-size: 21px; flex-shrink: 0; }
+  .af h4 { font-size: 16px; font-weight: 800; margin-bottom: 3px; }
+  .af p { font-size: 13.5px; color: var(--gray); }
+
+  /* ───────── PLATFORM ───────── */
+  .platform { background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+  .platform::before { content:''; position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 900px; height: 500px; background: radial-gradient(ellipse, rgba(47,107,255,.25), transparent 70%); pointer-events: none; }
+  .platform .sec-tag { color: var(--cyan); background: rgba(24,200,255,.12); }
+  .platform .sec-sub { color: rgba(255,255,255,.6); }
+  .platform-main { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; margin-top: 50px; position: relative; }
+  .platform-shot { border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,.1); line-height: 0; }
+  .platform-shot img { width: 100%; }
+  .pfeatures { display: flex; flex-direction: column; gap: 14px; }
+  .pf-item { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r-sm); padding: 20px 22px; display: flex; gap: 16px; transition: .3s; }
+  .pf-item:hover { background: rgba(255,255,255,.09); transform: translateX(4px); }
+  .pf-item .ic { width: 48px; height: 48px; border-radius: 13px; background: var(--grad-blue); display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
+  .pf-item h4 { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+  .pf-item p { font-size: 13.5px; color: rgba(255,255,255,.62); }
+
+  /* ───────── CAREER ───────── */
+  .career { background: var(--bg-soft); }
+  .career-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 50px; }
+  .ccard { background: var(--white); border-radius: var(--r); padding: 32px 26px; border: 1px solid var(--line); transition: .3s; }
+  .ccard:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: transparent; }
+  .ccard .ic { width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; font-size: 26px; margin-bottom: 20px; }
+  .ccard h3 { font-size: 19px; font-weight: 800; margin-bottom: 10px; }
+  .ccard p { font-size: 14px; color: var(--gray); }
+
+  /* ───────── INSTRUCTORS ───────── */
+  .scroller { display: flex; gap: 22px; overflow-x: auto; padding: 50px 0 14px; scroll-snap-type: x mandatory; }
+  .scroller::-webkit-scrollbar { height: 7px; }
+  .scroller::-webkit-scrollbar-track { background: var(--bg-soft); border-radius: 4px; }
+  .scroller::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 4px; }
+  .icard { flex: 0 0 250px; scroll-snap-align: start; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--line); transition: .3s; }
+  .icard:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .icard .photo { aspect-ratio: 1; display: grid; place-items: center; font-size: 76px; }
+  .icard .info { padding: 18px 20px; background: var(--white); }
+  .icard .info .nm { font-family: 'Manrope'; font-size: 17px; font-weight: 800; }
+  .icard .info .rl { font-size: 13px; color: var(--gray); margin-top: 2px; }
+  .icard .info .exp { font-size: 12px; color: var(--blue); font-weight: 600; margin-top: 8px; }
+
+  /* ───────── FREE ───────── */
+  .free { background: var(--white); }
+  .free-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; margin-top: 50px; }
+  .fcard { border-radius: var(--r); overflow: hidden; border: 2px solid var(--line); transition: .3s; background: var(--white); display: flex; flex-direction: column; }
+  .fcard:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--green); }
+  .fcard .cover { aspect-ratio: 16/9; position: relative; overflow: hidden; background: var(--bg-soft2); line-height: 0; }
+  .fcard .cover img { width: 100%; height: 100%; object-fit: cover; }
+  .free-tag { position: absolute; top: 16px; left: 16px; background: var(--green); color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; padding: 6px 14px; border-radius: var(--r-pill); z-index: 2; }
+  .fcard .b { padding: 26px; display: flex; flex-direction: column; flex: 1; }
+  .fcard h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+  .fcard p { font-size: 14px; color: var(--gray); margin-bottom: 22px; flex: 1; }
+
+  /* ───────── REVIEWS ───────── */
+  .reviews { background: var(--bg-soft); }
+  .rev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 14px; }
+  .rcard { background: var(--white); border-radius: var(--r); padding: 28px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); transition: .3s; }
+  .rcard:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .rcard .top { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; }
+  .avatar { width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; font-family: 'Manrope'; font-weight: 800; color: #fff; font-size: 17px; flex-shrink: 0; }
+  .rcard .nm { font-family: 'Manrope'; font-weight: 800; font-size: 16px; }
+  .rcard .cs { font-size: 13px; color: var(--gray); }
+  .stars { color: #ffb020; font-size: 15px; letter-spacing: 2px; margin-bottom: 12px; }
+  .rcard .txt { font-size: 14.5px; color: var(--ink-2); }
+
+  /* ───────── BRANDS ───────── */
+  .brands { background: var(--white); padding: 70px 0; }
+  .brand-row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center; margin-top: 40px; }
+  .brand { font-family: 'Manrope'; font-weight: 800; font-size: 24px; color: var(--gray-light); padding: 16px 30px; border-radius: var(--r-sm); transition: .2s; letter-spacing: -.01em; }
+  .brand:hover { color: var(--ink); background: var(--bg-soft); }
+
+  /* ───────── CONSULT FORM ───────── */
+  .consult { background: var(--bg-soft); }
+  .consult-box { background: var(--grad-purple); border-radius: var(--r-lg); padding: 60px; color: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; position: relative; overflow: hidden; }
+  .consult-box::before { content:''; position: absolute; bottom: -40%; left: -5%; width: 460px; height: 460px; background: radial-gradient(circle, rgba(255,255,255,.18), transparent 65%); }
+  .consult-box h2 { font-size: 38px; font-weight: 800; margin-bottom: 16px; position: relative; }
+  .consult-box p { color: rgba(255,255,255,.85); font-size: 17px; position: relative; }
+  .form { position: relative; display: flex; flex-direction: column; gap: 14px; }
+  .form input { width: 100%; padding: 16px 20px; border-radius: var(--r-sm); border: none; font-size: 15px; font-family: 'Inter'; background: rgba(255,255,255,.95); color: var(--ink); }
+  .form input:focus { outline: 3px solid rgba(255,255,255,.4); }
+  .form .btn { background: var(--ink); color: #fff; margin-top: 6px; }
+  .form .btn:hover { background: #1a2240; transform: translateY(-2px); }
+  .form .note { font-size: 12px; color: rgba(255,255,255,.7); text-align: center; }
+
+  /* ───────── PORTFOLIO ───────── */
+  .portfolio { background: var(--white); }
+  .pf-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-auto-rows: 210px; gap: 18px; margin-top: 50px; }
+  .pfi { border-radius: var(--r); overflow: hidden; position: relative; cursor: pointer; transition: .3s; background: var(--bg-soft2); line-height: 0; }
+  .pfi img { width: 100%; height: 100%; object-fit: cover; transition: .4s; }
+  .pfi:hover { box-shadow: var(--shadow); }
+  .pfi:hover img { transform: scale(1.06); }
+  .pfi::after { content: attr(data-tag); position: absolute; left: 16px; bottom: 14px; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: #fff; background: rgba(0,0,0,.45); padding: 5px 12px; border-radius: var(--r-pill); backdrop-filter: blur(6px); line-height: 1.2; }
+  .pfi.tall { grid-row: span 2; }
+  .pfi.wide { grid-column: span 2; }
+
+  /* ───────── BLOG ───────── */
+  .blog { background: var(--bg-soft); }
+  .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; margin-top: 50px; }
+  .bcard { background: var(--white); border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); transition: .3s; cursor: pointer; }
+  .bcard:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .bcard .cover { aspect-ratio: 16/9; display: grid; place-items: center; font-size: 50px; }
+  .bcard .b { padding: 24px; }
+  .bcard .cat { font-family: 'Manrope'; font-weight: 700; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+  .bcard h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; line-height: 1.35; }
+  .bcard p { font-size: 13.5px; color: var(--gray); }
+  .bcard .date { font-size: 12.5px; color: var(--gray-light); margin-top: 16px; font-weight: 600; }
+
+  /* ───────── FINAL CTA ───────── */
+  .final { background: var(--white); }
+  .final-box { background: var(--ink); border-radius: var(--r-lg); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
+  .final-box::before { content:''; position: absolute; inset: 0; background: var(--grad-mesh); opacity: .6; }
+  .final-box h2 { font-size: 48px; font-weight: 800; color: #fff; margin-bottom: 18px; position: relative; }
+  .final-box h2 .g { background: var(--grad-blue); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .final-box p { font-size: 19px; color: rgba(255,255,255,.7); max-width: 540px; margin: 0 auto 36px; position: relative; }
+  .final-box .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ───────── FOOTER ───────── */
+  footer { background: var(--ink); color: #fff; padding: 72px 0 36px; }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .foot-logo img { height: 30px; margin-bottom: 18px; }
+  .foot-about { color: rgba(255,255,255,.6); font-size: 14.5px; margin-bottom: 24px; max-width: 320px; }
+  .socials { display: flex; gap: 11px; }
+  .soc { width: 42px; height: 42px; border-radius: 12px; background: rgba(255,255,255,.08); display: grid; place-items: center; font-size: 17px; transition: .25s; }
+  .soc:hover { background: var(--blue); transform: translateY(-3px); }
+  .foot-col h4 { font-family: 'Manrope'; font-size: 15px; font-weight: 800; margin-bottom: 18px; }
+  .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .foot-col a { color: rgba(255,255,255,.6); font-size: 14px; transition: .2s; }
+  .foot-col a:hover { color: #fff; }
+  .foot-contact a { display: flex; align-items: center; gap: 9px; }
+  .foot-bottom { padding-top: 30px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .foot-bottom .cp { font-size: 13px; color: rgba(255,255,255,.5); }
+  .foot-legal { display: flex; gap: 22px; flex-wrap: wrap; }
+  .foot-legal a { font-size: 13px; color: rgba(255,255,255,.5); transition: .2s; }
+  .foot-legal a:hover { color: #fff; }
+
+  /* ───────── REVEAL ANIM ───────── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ───────── RESPONSIVE ───────── */
+  @media (max-width: 1080px) {
+    .hero h1 { font-size: 44px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero-visual { max-width: 500px; }
+    .course-grid, .free-grid, .blog-grid, .rev-grid { grid-template-columns: repeat(2,1fr); }
+    .course.big { grid-column: span 2; }
+    .platform-main { grid-template-columns: 1fr; }
+    .career-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid, .consult-box { grid-template-columns: 1fr; }
+    .pf-grid { grid-template-columns: repeat(2,1fr); }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 680px) {
+    nav.menu, .login-link { display: none; }
+    .burger { display: flex; }
+    .hero { padding-top: 116px; }
+    .hero h1 { font-size: 34px; }
+    .sec-title { font-size: 31px; }
+    .course-grid, .free-grid, .blog-grid, .rev-grid, .career-grid, .about-features { grid-template-columns: 1fr; }
+    .course.big { grid-column: span 1; }
+    .pf-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+    .pfi.wide, .pfi.tall { grid-column: span 1; grid-row: span 1; }
+    .cta-strip .box, .consult-box, .final-box { padding: 36px 26px; }
+    .final-box h2 { font-size: 32px; }
+    .foot-grid { grid-template-columns: 1fr; gap: 32px; }
+    section { padding: 64px 0; }
+    .founder-badge { left: 0; }
+    .fc-1 { left: 6px; } .fc-2 { right: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo"><img src="https://cdn.prod.website-files.com/626fc70a78a2e44c54a1a427/66604fe13c9fa001a239f7a7_logoCreo.svg" alt="CREO"></a>
+    <nav class="menu">
+      <a href="#about">Про школу</a>
+      <a href="#courses">Курси</a>
+      <a href="#platform">Методологія</a>
+      <a href="#reviews">Відгуки</a>
+      <a href="#blog">Блог</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="http://my.creo.ua/" class="login-link" target="_blank" rel="noopener"><img src="https://cdn.prod.website-files.com/626fc70a78a2e44c54a1a427/66604fe13c9fa001a239f8de_iconUserBold.svg" alt="">Увійти</a>
+      <a href="#courses" class="btn btn-primary">Почати безкоштовно</a>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="pill"><span class="dot">🎓</span> Онлайн школа дизайну №1 в Україні</span>
+      <h1>Платформа для навчання сучасним <span class="g">діджитал професіям</span> та роботі на себе</h1>
+      <p class="lead">Навчаємо дизайну з нуля та допомагаємо вийти на фріланс — працювати з українськими та міжнародними клієнтами й будувати кар'єру мрії.</p>
+      <div class="hero-cta">
+        <a href="#courses" class="btn btn-primary btn-lg">Обрати курс →</a>
+        <a href="#free" class="btn btn-ghost btn-lg">▶ Спробувати безкоштовно</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">8000+</div><div class="lbl">студентів вже навчилися</div></div>
+        <div class="stat"><div class="num">9.8</div><div class="lbl">середній рейтинг школи</div></div>
+        <div class="stat"><div class="num">6&nbsp;років</div><div class="lbl">досвіду на ринку</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="browser">
+        <div class="browser-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="u">my.creo.ua</span></div>
+        <div class="browser-body">
+          <img class="shot" src="https://cdn.prod.website-files.com/626fc70a78a2e44c54a1a427/66604fe53c9fa001a239fb55_platform.png" alt="Навчальна платформа CREO" loading="eager">
+          <button class="play-btn" type="button" aria-label="Дивитись відео" onclick="alert('Промо-відео доступне на оригінальному сайті creo.ua')">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="float-card fc-1">
+        <div class="ic" style="background:rgba(47,107,255,.12)">🪙</div>
+        <div><div class="t1">+250 creoins</div><div class="t2">за урок сьогодні</div></div>
+      </div>
+      <div class="float-card fc-2">
+        <div class="ic" style="background:rgba(24,192,138,.14)">💼</div>
+        <div><div class="t1">Перший клієнт</div><div class="t2">під час навчання</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="wrap">
+    <div class="box reveal">
+      <div>
+        <h3>Не знаєш, з чого почати?</h3>
+        <p>Допоможемо обрати перший крок та підібрати професію саме під тебе.</p>
+      </div>
+      <a href="#consult" class="btn btn-primary btn-lg">Безкоштовна консультація</a>
+    </div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-head">
+        <span class="sec-tag">Навчальні програми</span>
+        <h2 class="sec-title">Обери свою digital професію</h2>
+        <p class="sec-sub">Понад 10 напрямків навчання — від графічного дизайну до AI та motion.</p>
+      </div>
+      <a href="http://my.creo.ua/" target="_blank" rel="noopener" class="btn btn-ghost">Усі курси →</a>
+    </div>
+    <div class="filters">
+      <button class="filter active">Усі напрямки</button>
+      <button class="filter">Графічний дизайн</button>
+      <button class="filter">AI / Нейромережі</button>
+      <button class="filter">UX/UI</button>
+      <button class="filter">Motion</button>
+      <button class="filter">Брендинг</button>
+    </div>
+    <div class="course-grid">
+
+      <a href="https://c-r-e-o.com/bonus_special?utm_source=golovsait" target="_blank" rel="noopener" class="course big reveal">
+        <div class="course-cover"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c5c54747f8af105cbb5d_Mask%20group.png" alt="Freelancer Graphic Designer"></div>
+        <div class="course-body">
+          <div class="chips"><span class="chip blue">Graphic Design</span><span class="chip purple">Motion</span><span class="chip orange">Freelance</span></div>
+          <h3>Freelancer Graphic Designer +motion</h3>
+          <p>Флагманська програма: повний шлях від основ графічного дизайну до моушн-анімації та виходу на фріланс із реальними замовленнями.</p>
+          <div class="course-foot"><span class="dur">⏱ 6 місяців · 120+ уроків</span><span class="more">Детальніше →</span></div>
+        </div>
+      </a>
+
+      <a href="https://www.creo.ua/neurocamp-ai?utm_source=golovsait" target="_blank" rel="noopener" class="course reveal">
+        <div class="course-cover"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/68cd7cf9fd4c29259337c919_%D0%B3%D0%BE%D0%BB%D0%BD%D0%B5%D0%B9%D1%80%D0%BE.png" alt="Neiro Camp"></div>
+        <div class="course-body">
+          <div class="chips"><span class="chip purple">AI</span><span class="chip blue">Нейромережі</span></div>
+          <h3>Neiro Camp</h3>
+          <p>9-тижневе занурення у штучний інтелект для дизайнерів та креаторів.</p>
+          <div class="course-foot"><span class="dur">⏱ 9 тижнів</span><span class="more">Детальніше →</span></div>
+        </div>
+      </a>
+
+      <a href="https://www.creo.ua/neurodesigner?utm_source=golovsait" target="_blank" rel="noopener" class="course reveal">
+        <div class="course-cover"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c4cd14f2b3391a3d1255_Mask%20group-1.png" alt="Нейро-Дизайнер"></div>
+        <div class="course-body">
+          <div class="chips"><span class="chip purple">AI</span><span class="chip green">3 місяці</span></div>
+          <h3>Нейро-Дизайнер</h3>
+          <p>Поєднай класичний дизайн із можливостями нейромереж нового покоління.</p>
+          <div class="course-foot"><span class="dur">⏱ 3 місяці</span><span class="more">Детальніше →</span></div>
+        </div>
+      </a>
+
+      <a href="https://www.creo.ua/bonus-freelancer-brand-designer?utm_source=golovsait" target="_blank" rel="noopener" class="course reveal">
+        <div class="course-cover"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c48813eebcc2a5335a63_Mask%20group-2.png" alt="Freelancer Brand Designer"></div>
+        <div class="course-body">
+          <div class="chips"><span class="chip blue">Brand Design</span><span class="chip orange">Freelance</span></div>
+          <h3>Freelancer Brand Designer</h3>
+          <p>Створюй сильні бренди й айдентику та заробляй на фрілансі.</p>
+          <div class="course-foot"><span class="dur">⏱ 5 місяців</span><span class="more">Детальніше →</span></div>
+        </div>
+      </a>
+
+      <a href="https://www.creo.ua/web-design?utm_source=golovsait" target="_blank" rel="noopener" class="course reveal">
+        <div class="course-cover"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c47aa04772d5888b0f9c_Mask%20group-3.png" alt="UX/UI Designer +webflow"></div>
+        <div class="course-body">
+          <div class="chips"><span class="chip blue">UX/UI</span><span class="chip green">Webflow</span></div>
+          <h3>Freelancer UX/UI Designer +webflow</h3>
+          <p>Проєктуй інтерфейси та запускай сайти на Webflow без коду.</p>
+          <div class="course-foot"><span class="dur">⏱ 6 місяців</span><span class="more">Детальніше →</span></div>
+        </div>
+      </a>
+
+      <a href="https://www.creo.ua/course-easy-type?utm_source=golovsait" target="_blank" rel="noopener" class="course reveal">
+        <div class="course-cover"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/69271f218666f4f64238e9f8_47d377ed-6ec3-48d1-9110-8ef2b32226f1.png" alt="EASY TYPE"></div>
+        <div class="course-body">
+          <div class="chips"><span class="chip pink">Typography</span></div>
+          <h3>EASY TYPE</h3>
+          <p>Інтенсив із типографіки: навчись майстерно працювати зі шрифтами.</p>
+          <div class="course-foot"><span class="dur">⏱ 4 тижні</span><span class="more">Детальніше →</span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="founder-visual reveal">
+      <div class="founder-photo"><img src="https://cdn.prod.website-files.com/626fc70a78a2e44c54a1a427/66604fe23c9fa001a239f938_%D0%A4%D0%BE%D1%82%D0%BE-60%202.jpg" alt="Віталій Вальков"></div>
+      <div class="founder-badge">
+        <div class="name">Віталій Вальков</div>
+        <div class="role">Засновник школи CREO</div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <span class="sec-tag">Познайомтесь з CREO</span>
+      <div class="quote"><span class="mark">«</span>Ми будуємо освітню екосистему, де кожен може опанувати цифрову професію та звільнитися від офісної залежності.<span class="mark">»</span></div>
+      <p class="sec-sub">CREO — це не просто курси, а спільнота людей, які обирають свободу, творчість і роботу на себе. За 6 років ми допомогли тисячам студентів змінити життя.</p>
+      <div class="about-features">
+        <div class="af"><div class="ic" style="background:rgba(47,107,255,.1)">🎯</div><div><h4>80% практики</h4><p>Реальні проєкти з перших занять</p></div></div>
+        <div class="af"><div class="ic" style="background:rgba(124,92,255,.1)">💼</div><div><h4>Вихід на фріланс</h4><p>Перші клієнти ще під час навчання</p></div></div>
+        <div class="af"><div class="ic" style="background:rgba(24,192,138,.12)">🏆</div><div><h4>Підтримка кар'єри</h4><p>Вакансії, ревʼю та роботодавці</p></div></div>
+        <div class="af"><div class="ic" style="background:rgba(255,155,47,.13)">🤝</div><div><h4>Жива спільнота</h4><p>Тисячі однодумців поруч</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform" id="platform">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="sec-tag">Власна платформа</span>
+      <h2 class="sec-title">Навчаємо на власній гейміфікованій платформі</h2>
+      <p class="sec-sub">Ми перетворили навчання на захопливу гру: заробляй CREO-коїни, прокачуй аватар і конкуруй у рейтингу.</p>
+    </div>
+    <div class="platform-main">
+      <div class="platform-shot reveal"><img src="https://cdn.prod.website-files.com/626fc70a78a2e44c54a1a427/66604fe53c9fa001a239fb55_platform.png" alt="Платформа CREO"></div>
+      <div class="pfeatures">
+        <div class="pf-item reveal"><div class="ic">🪙</div><div><h4>Система CREO-коїнів</h4><p>Заробляй внутрішню валюту за активність та обмінюй на бонуси й привілеї.</p></div></div>
+        <div class="pf-item reveal"><div class="ic">👤</div><div><h4>Персональний аватар</h4><p>Налаштовуй персонажа й прокачуй його разом із навичками.</p></div></div>
+        <div class="pf-item reveal"><div class="ic">📅</div><div><h4>Планувальник занять</h4><p>Зручний розклад із нагадуваннями про уроки.</p></div></div>
+        <div class="pf-item reveal"><div class="ic">🏅</div><div><h4>Рейтинг і досягнення</h4><p>Збирай бейджі, конкуруй з іншими та потрапляй у топ школи.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section class="career" id="career">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="sec-tag">Підтримка кар'єри</span>
+      <h2 class="sec-title">Допоможемо знайти роботу або вийти на фріланс</h2>
+      <p class="sec-sub">CREO супроводжує тебе й після випуску — щоб навчання перетворилося на дохід.</p>
+    </div>
+    <div class="career-grid">
+      <div class="ccard reveal"><div class="ic" style="background:rgba(47,107,255,.1)">👥</div><h3>Creo-People</h3><p>Спільнота дизайнерів для спілкування, нетворкінгу та натхнення.</p></div>
+      <div class="ccard reveal"><div class="ic" style="background:rgba(124,92,255,.1)">🚀</div><h3>Freelance Challenge</h3><p>Програма виходу на фріланс і отримання першого реального клієнта.</p></div>
+      <div class="ccard reveal"><div class="ic" style="background:rgba(24,192,138,.12)">💰</div><h3>Прямі клієнти</h3><p>Регулярні замовлення від клієнтів напряму для наших студентів.</p></div>
+      <div class="ccard reveal"><div class="ic" style="background:rgba(255,155,47,.13)">🎯</div><h3>Кар'єрний відділ</h3><p>Щотижневі вакансії, CV-ревʼю та партнери-роботодавці.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section class="instructors" id="instructors">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">Викладачі</span>
+      <h2 class="sec-title">В нас викладають справжні профі</h2>
+      <p class="sec-sub">Практикуючі спеціалісти: власники студій, лауреати міжнародних нагород і топові фрілансери.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="scroller">
+      <div class="icard"><div class="photo" style="background:linear-gradient(160deg,#2f6bff,#7c5cff)">👨‍🎨</div><div class="info"><div class="nm">Віталій Вальков</div><div class="rl">Засновник · Neiro Design</div><div class="exp">12+ років досвіду</div></div></div>
+      <div class="icard"><div class="photo" style="background:linear-gradient(160deg,#7c5cff,#f959f9)">👩‍🎨</div><div class="info"><div class="nm">Світлана Сергібаєва</div><div class="rl">Graphic Design</div><div class="exp">9 років досвіду</div></div></div>
+      <div class="icard"><div class="photo" style="background:linear-gradient(160deg,#18c8ff,#2f6bff)">🧑‍💻</div><div class="info"><div class="nm">Іван Вергун</div><div class="rl">Web Design · Webflow</div><div class="exp">8 років досвіду</div></div></div>
+      <div class="icard"><div class="photo" style="background:linear-gradient(160deg,#ff9b2f,#f959f9)">🎬</div><div class="info"><div class="nm">Максим Ковальчук</div><div class="rl">Motion Design</div><div class="exp">7 років досвіду</div></div></div>
+      <div class="icard"><div class="photo" style="background:linear-gradient(160deg,#18c08a,#18c8ff)">💻</div><div class="info"><div class="nm">Аліна Петрова</div><div class="rl">UX/UI Design</div><div class="exp">6 років досвіду</div></div></div>
+      <div class="icard"><div class="photo" style="background:linear-gradient(160deg,#2f6bff,#18c08a)">🤖</div><div class="info"><div class="nm">Сергій Іваненко</div><div class="rl">AI & Нейромережі</div><div class="exp">5 років досвіду</div></div></div>
+      <div class="icard"><div class="photo" style="background:linear-gradient(160deg,#7c5cff,#2f6bff)">🔤</div><div class="info"><div class="nm">Тетяна Шевченко</div><div class="rl">Типографіка</div><div class="exp">10 років досвіду</div></div></div>
+      <div class="icard"><div class="photo" style="background:linear-gradient(160deg,#f959f9,#ff9b2f)">📸</div><div class="info"><div class="nm">Роман Бондаренко</div><div class="rl">AI Photography</div><div class="exp">6 років досвіду</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE -->
+<section class="free" id="free">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="sec-tag">Без оплати</span>
+      <h2 class="sec-title">Почніть безкоштовно</h2>
+      <p class="sec-sub">Спробуй формат навчання й зроби перший крок у дизайн без жодного ризику.</p>
+    </div>
+    <div class="free-grid">
+      <a href="https://telegram.me/neurocreo_bot?start=68d108320f2a0a165a40ae32" target="_blank" rel="noopener" class="fcard reveal">
+        <div class="cover"><span class="free-tag">Безкоштовно</span><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/692726efb5a56571f3f34a83_32829e2d-6762-4cbb-ad52-c27eda539697.png" alt="НейроДизайнер Безкоштовний"></div>
+        <div class="b"><h3>НейроДизайнер Безкоштовний</h3><p>Основи AI-дизайну: навчись створювати графіку за допомогою нейромереж.</p><span class="btn btn-dark btn-block">Почати у Telegram</span></div>
+      </a>
+      <a href="https://study.creo.ua/marathon?utm_source=newmain&utm_content=middle" target="_blank" rel="noopener" class="fcard reveal">
+        <div class="cover"><span class="free-tag">Безкоштовно</span><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/692724f4d99a4c7d1450c012_Frame%202085663998.png" alt="Як стати графічним дизайнером"></div>
+        <div class="b"><h3>Як стати графічним дизайнером</h3><p>Безкоштовний марафон-знайомство з професією графічного дизайнера.</p><span class="btn btn-dark btn-block">Записатися</span></div>
+      </a>
+      <a href="https://www.creo.ua/mini-course-ui-ux?utm_source=newmain&utm_content=middle" target="_blank" rel="noopener" class="fcard reveal">
+        <div class="cover"><span class="free-tag">Безкоштовно</span><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/69271f218666f4f64238e9f8_47d377ed-6ec3-48d1-9110-8ef2b32226f1.png" alt="Шлях у UI/UX"></div>
+        <div class="b"><h3>Розпочни шлях у UI/UX</h3><p>Вступний міні-курс у світ дизайну інтерфейсів із практикою з першого дня.</p><span class="btn btn-dark btn-block">Почати</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="sec-tag">Відгуки</span>
+      <h2 class="sec-title">Що про нас говорять наші студенти</h2>
+      <p class="sec-sub">Понад 8000 випускників — і ось лише деякі з їхніх історій.</p>
+    </div>
+    <div class="filters" style="justify-content:center">
+      <button class="filter active">Усі</button>
+      <button class="filter">Graphic Design</button>
+      <button class="filter">UX/UI</button>
+      <button class="filter">AI</button>
+      <button class="filter">Freelance</button>
+      <button class="filter">Motion</button>
+    </div>
+    <div class="rev-grid">
+      <div class="rcard reveal"><div class="top"><div class="avatar" style="background:var(--grad-blue)">АК</div><div><div class="nm">Анна Коваленко</div><div class="cs">Graphic Designer +motion</div></div></div><div class="stars">★★★★★</div><div class="txt">Школа повністю змінила моє життя. За 6 місяців перейшла з бухгалтерії у графічний дизайн і вже маю постійних клієнтів.</div></div>
+      <div class="rcard reveal"><div class="top"><div class="avatar" style="background:var(--grad-purple)">МП</div><div><div class="nm">Михайло Попов</div><div class="cs">Neiro Camp</div></div></div><div class="stars">★★★★★</div><div class="txt">Курс по AI перевершив очікування. Куратори завжди на зв'язку, матеріал максимально актуальний.</div></div>
+      <div class="rcard reveal"><div class="top"><div class="avatar" style="background:var(--grad-warm)">ОС</div><div><div class="nm">Ольга Сидоренко</div><div class="cs">UX/UI Designer</div></div></div><div class="stars">★★★★★</div><div class="txt">Навчають не лише інструментам, а й мисленню дизайнера. Це безцінно. Рекомендую всім!</div></div>
+      <div class="rcard reveal"><div class="top"><div class="avatar" style="background:linear-gradient(135deg,#18c08a,#18c8ff)">ДМ</div><div><div class="nm">Дмитро Мороз</div><div class="cs">Brand Designer</div></div></div><div class="stars">★★★★★</div><div class="txt">Системний підхід до брендингу й айдентики. Портфоліо виросло, замовлення вже йдуть.</div></div>
+      <div class="rcard reveal"><div class="top"><div class="avatar" style="background:linear-gradient(135deg,#ff9b2f,#ffb020)">КЛ</div><div><div class="nm">Катерина Лисенко</div><div class="cs">EASY TYPE</div></div></div><div class="stars">★★★★★</div><div class="txt">Короткий, але дуже насичений інтенсив. Тепер бачу шрифти зовсім по-іншому.</div></div>
+      <div class="rcard reveal"><div class="top"><div class="avatar" style="background:linear-gradient(135deg,#f959f9,#7c5cff)">ВТ</div><div><div class="nm">Валентина Ткач</div><div class="cs">Motion Design</div></div></div><div class="stars">★★★★★</div><div class="txt">Motion відкрив нові можливості. Клієнти цінують комплексний підхід — дизайн плюс анімація.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands">
+  <div class="wrap">
+    <div class="sec-head center"><h2 class="sec-title" style="font-size:30px">Бренди, які працюють з CREO</h2></div>
+    <div class="brand-row">
+      <span class="brand">nova⬠</span><span class="brand">Pixel▲</span><span class="brand">STUDIO·K</span>
+      <span class="brand">deco◆</span><span class="brand">Lumen</span><span class="brand">orbit○</span><span class="brand">VERTEX</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULT -->
+<section class="consult" id="consult">
+  <div class="wrap">
+    <div class="consult-box reveal">
+      <div>
+        <h2>Отримати консультацію щодо вибору професії</h2>
+        <p>Залиш заявку — і наш менеджер допоможе підібрати курс саме під твої цілі та рівень.</p>
+      </div>
+      <form class="form" onsubmit="event.preventDefault(); this.reset(); window.open('https://t.me/creo_study','_blank'); alert('Дякуємо! Ми зв'+String.fromCharCode(39)+'яжемося з вами найближчим часом.');">
+        <input type="text" placeholder="Ваше ім'я" required>
+        <input type="tel" placeholder="Номер телефону" required>
+        <input type="email" placeholder="Email">
+        <button type="submit" class="btn btn-block btn-lg">Отримати консультацію</button>
+        <div class="note">Натискаючи кнопку, ви погоджуєтесь з політикою конфіденційності</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="sec-tag">Портфоліо</span>
+      <h2 class="sec-title">Що створюють наші студенти</h2>
+      <p class="sec-sub">Реальні роботи випускників CREO у різних напрямках дизайну.</p>
+    </div>
+    <div class="pf-grid">
+      <div class="pfi tall" data-tag="Graphic Design"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c5c54747f8af105cbb5d_Mask%20group.png" alt=""></div>
+      <div class="pfi" data-tag="Branding"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c48813eebcc2a5335a63_Mask%20group-2.png" alt=""></div>
+      <div class="pfi wide" data-tag="UX/UI"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c47aa04772d5888b0f9c_Mask%20group-3.png" alt=""></div>
+      <div class="pfi" data-tag="AI Art"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/68cd7cf9fd4c29259337c919_%D0%B3%D0%BE%D0%BB%D0%BD%D0%B5%D0%B9%D1%80%D0%BE.png" alt=""></div>
+      <div class="pfi" data-tag="Neuro"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c4cd14f2b3391a3d1255_Mask%20group-1.png" alt=""></div>
+      <div class="pfi wide" data-tag="Typography"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/69271f218666f4f64238e9f8_47d377ed-6ec3-48d1-9110-8ef2b32226f1.png" alt=""></div>
+      <div class="pfi" data-tag="AI Photo"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/692726efb5a56571f3f34a83_32829e2d-6762-4cbb-ad52-c27eda539697.png" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-head">
+        <span class="sec-tag">Блог</span>
+        <h2 class="sec-title">Корисне про дизайн</h2>
+        <p class="sec-sub">Гайди, інструменти та інсайти для дизайнерів.</p>
+      </div>
+      <a href="#" class="btn btn-ghost">Усі статті →</a>
+    </div>
+    <div class="blog-grid">
+      <article class="bcard reveal"><div class="cover" style="background:linear-gradient(135deg,#2f6bff,#7c5cff)">🤖</div><div class="b"><div class="cat">AI · Інструменти</div><h3>ChatGPT для дизайнерів: як застосовувати в роботі</h3><p>Практичні сценарії використання ШІ для прискорення дизайн-процесів.</p><div class="date">Травень 2025</div></div></article>
+      <article class="bcard reveal"><div class="cover" style="background:linear-gradient(135deg,#7c5cff,#18c8ff)">🖼️</div><div class="b"><div class="cat">AI · Midjourney</div><h3>Як писати промпти в Midjourney для кращих результатів</h3><p>Принципи формулювання запитів для якісних зображень.</p><div class="date">Квітень 2025</div></div></article>
+      <article class="bcard reveal"><div class="cover" style="background:linear-gradient(135deg,#18c08a,#18c8ff)">✨</div><div class="b"><div class="cat">Ресурси · Брендинг</div><h3>20 сервісів для пошуку брендингового натхнення</h3><p>Найкращі платформи, щоб вивчати бренди й знаходити ідеї.</p><div class="date">Березень 2025</div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <div class="final-box reveal">
+      <h2>Готовий змінити <span class="g">майбутнє</span>?</h2>
+      <p>Приєднуйся до 8000+ студентів, які вже будують кар'єру у дизайні разом із CREO.</p>
+      <div class="btns">
+        <a href="#courses" class="btn btn-primary btn-lg">Обрати курс</a>
+        <a href="#free" class="btn btn-light btn-lg">Спробувати безкоштовно</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><img src="https://cdn.prod.website-files.com/626fc70a78a2e44c54a1a427/66604fe13c9fa001a239f7a7_logoCreo.svg" alt="CREO"></div>
+        <p class="foot-about">Онлайн школа дизайну. Навчаємо сучасним діджитал-професіям та допомагаємо будувати кар'єру фрілансера.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/creo.study/" target="_blank" rel="noopener" class="soc" title="Instagram">📷</a>
+          <a href="https://www.youtube.com/channel/UCCJNhMOVq_VWs25fBAPGF6Q" target="_blank" rel="noopener" class="soc" title="YouTube">▶</a>
+          <a href="https://www.facebook.com/creo.study" target="_blank" rel="noopener" class="soc" title="Facebook">f</a>
+          <a href="https://t.me/creo_study" target="_blank" rel="noopener" class="soc" title="Telegram">✈</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Школа</h4>
+        <ul>
+          <li><a href="#about">Про нас</a></li>
+          <li><a href="#platform">Методологія</a></li>
+          <li><a href="#instructors">Викладачі</a></li>
+          <li><a href="#reviews">Відгуки</a></li>
+          <li><a href="#blog">Блог</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Курси</h4>
+        <ul>
+          <li><a href="https://c-r-e-o.com/bonus_special?utm_source=golovsait" target="_blank" rel="noopener">Graphic Designer</a></li>
+          <li><a href="https://www.creo.ua/bonus-freelancer-brand-designer?utm_source=golovsait" target="_blank" rel="noopener">Brand Designer</a></li>
+          <li><a href="https://www.creo.ua/web-design?utm_source=golovsait" target="_blank" rel="noopener">UX/UI Designer</a></li>
+          <li><a href="https://www.creo.ua/neurocamp-ai?utm_source=golovsait" target="_blank" rel="noopener">Neiro Camp</a></li>
+          <li><a href="https://www.creo.ua/course-easy-type?utm_source=golovsait" target="_blank" rel="noopener">EASY TYPE</a></li>
+        </ul>
+      </div>
+      <div class="foot-col foot-contact">
+        <h4>Контакти</h4>
+        <ul>
+          <li><a href="mailto:hello@creo.ua">✉ hello@creo.ua</a></li>
+          <li><a href="tel:+380935934850">📞 +38 093 593 48 50</a></li>
+          <li><a href="tel:+380736079354">📞 +380 73 607 93 54</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="cp">© 2026 CREO™ · Засновник: Віталій Вальков</div>
+      <div class="foot-legal">
+        <a href="#">Договір оферти</a>
+        <a href="#">Гарантія повернення</a>
+        <a href="#">Політика конфіденційності</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 20));
+
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('.filters').forEach(group => {
+    group.addEventListener('click', e => {
+      if (!e.target.classList.contains('filter')) return;
+      group.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+      e.target.classList.add('active');
+    });
+  });
+
+  document.getElementById('burger').addEventListener('click', () => {
+    const menu = document.querySelector('nav.menu');
+    const open = menu.style.display === 'flex';
+    Object.assign(menu.style, {
+      display: open ? '' : 'flex', position: 'absolute', top: '74px', left: '0', right: '0',
+      flexDirection: 'column', background: '#fff', padding: '20px 28px', gap: '18px',
+      borderBottom: '1px solid var(--line)', boxShadow: 'var(--shadow)'
+    });
+  });
+</script>
+
+</body>
+</html>

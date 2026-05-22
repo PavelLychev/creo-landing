@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / local agent config
+.claude/
+.vscode/
+.idea/
+
+# Logs & deps (not used now, but safe defaults)
+node_modules/
+*.log
+
+# Local raw downloads
+creo_raw.html
