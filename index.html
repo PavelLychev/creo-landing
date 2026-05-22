@@ -28,6 +28,7 @@
     --cyan: #18c8ff;
     --purple: #7c5cff;
     --pink: #f959f9;
+    --lime: #b4ec1e;
     --orange: #ff9b2f;
     --green: #18c08a;
 
@@ -65,6 +66,11 @@
   img { max-width: 100%; display: block; }
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* highlight accents (marker style) */
+  .hl { padding: .04em .3em; border-radius: 8px; color: var(--ink); -webkit-text-fill-color: var(--ink); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .hl-pink { background: var(--pink); }
+  .hl-lime { background: var(--lime); }
 
   /* ───────── BUTTONS ───────── */
   .btn {
@@ -122,7 +128,7 @@
     margin-bottom: 26px;
   }
   .pill .dot { width: 26px; height: 26px; border-radius: 50%; background: var(--grad-blue); display: grid; place-items: center; font-size: 13px; }
-  .hero h1 { font-size: 54px; font-weight: 800; margin-bottom: 22px; }
+  .hero h1 { font-size: 54px; font-weight: 800; margin-bottom: 22px; line-height: 1.26; }
   .hero h1 .g { background: var(--grad-blue); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .hero p.lead { font-size: 19px; color: var(--gray); max-width: 540px; margin-bottom: 34px; }
   .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 46px; }
@@ -169,9 +175,11 @@
     font-family: 'Manrope'; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
     color: var(--blue); background: rgba(47,107,255,.09); padding: 7px 16px; border-radius: var(--r-pill); margin-bottom: 18px;
   }
+  .sec-tag.pink { color: #c61ec6; background: rgba(249,89,249,.1); }
+  .sec-tag.lime { color: #6f9400; background: rgba(180,236,30,.18); }
   .sec-head { max-width: 700px; }
   .sec-head.center { margin: 0 auto; text-align: center; }
-  .sec-title { font-size: 44px; font-weight: 800; margin-bottom: 16px; }
+  .sec-title { font-size: 44px; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
   .sec-sub { font-size: 18px; color: var(--gray); }
   .sec-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 50px; flex-wrap: wrap; }
 
@@ -216,6 +224,7 @@
   .chip.green { color: var(--green); background: rgba(24,192,138,.12); }
   .chip.orange { color: var(--orange); background: rgba(255,155,47,.13); }
   .chip.pink { color: #d63bd6; background: rgba(249,89,249,.1); }
+  .chip.lime { color: #6f9400; background: rgba(180,236,30,.2); }
   .course h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
   .course p { font-size: 14.5px; color: var(--gray); margin-bottom: 20px; flex: 1; }
   .course-foot { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--line); }
@@ -280,10 +289,10 @@
   .free { background: var(--white); }
   .free-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; margin-top: 50px; }
   .fcard { border-radius: var(--r); overflow: hidden; border: 2px solid var(--line); transition: .3s; background: var(--white); display: flex; flex-direction: column; }
-  .fcard:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--green); }
+  .fcard:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--lime); }
   .fcard .cover { aspect-ratio: 16/9; position: relative; overflow: hidden; background: var(--bg-soft2); line-height: 0; }
   .fcard .cover img { width: 100%; height: 100%; object-fit: cover; }
-  .free-tag { position: absolute; top: 16px; left: 16px; background: var(--green); color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; padding: 6px 14px; border-radius: var(--r-pill); z-index: 2; }
+  .free-tag { position: absolute; top: 16px; left: 16px; background: var(--lime); color: var(--ink); font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; padding: 6px 14px; border-radius: var(--r-pill); z-index: 2; }
   .fcard .b { padding: 26px; display: flex; flex-direction: column; flex: 1; }
   .fcard h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
   .fcard p { font-size: 14px; color: var(--gray); margin-bottom: 22px; flex: 1; }
@@ -432,7 +441,7 @@
   <div class="wrap hero-grid">
     <div class="hero-text">
       <span class="pill"><span class="dot">🎓</span> Онлайн школа дизайну №1 в Україні</span>
-      <h1>Платформа для навчання сучасним <span class="g">діджитал професіям</span> та роботі на себе</h1>
+      <h1>Платформа для навчання <span class="hl hl-pink">сучасним</span> <span class="hl hl-lime">діджитал професіям</span> та роботі на себе</h1>
       <p class="lead">Навчаємо дизайну з нуля та допомагаємо вийти на фріланс — працювати з українськими та міжнародними клієнтами й будувати кар'єру мрії.</p>
       <div class="hero-cta">
         <a href="#courses" class="btn btn-primary btn-lg">Обрати курс →</a>
@@ -459,7 +468,7 @@
         <div><div class="t1">+250 creoins</div><div class="t2">за урок сьогодні</div></div>
       </div>
       <div class="float-card fc-2">
-        <div class="ic" style="background:rgba(24,192,138,.14)">💼</div>
+        <div class="ic" style="background:rgba(180,236,30,.22)">💼</div>
         <div><div class="t1">Перший клієнт</div><div class="t2">під час навчання</div></div>
       </div>
     </div>
@@ -485,7 +494,7 @@
     <div class="sec-top">
       <div class="sec-head">
         <span class="sec-tag">Навчальні програми</span>
-        <h2 class="sec-title">Обери свою digital професію</h2>
+        <h2 class="sec-title">Обери свою <span class="hl hl-lime">digital професію</span></h2>
         <p class="sec-sub">Понад 10 напрямків навчання — від графічного дизайну до AI та motion.</p>
       </div>
       <a href="http://my.creo.ua/" target="_blank" rel="noopener" class="btn btn-ghost">Усі курси →</a>
@@ -523,7 +532,7 @@
       <a href="https://www.creo.ua/neurodesigner?utm_source=golovsait" target="_blank" rel="noopener" class="course reveal">
         <div class="course-cover"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c4cd14f2b3391a3d1255_Mask%20group-1.png" alt="Нейро-Дизайнер"></div>
         <div class="course-body">
-          <div class="chips"><span class="chip purple">AI</span><span class="chip green">3 місяці</span></div>
+          <div class="chips"><span class="chip purple">AI</span><span class="chip lime">3 місяці</span></div>
           <h3>Нейро-Дизайнер</h3>
           <p>Поєднай класичний дизайн із можливостями нейромереж нового покоління.</p>
           <div class="course-foot"><span class="dur">⏱ 3 місяці</span><span class="more">Детальніше →</span></div>
@@ -543,7 +552,7 @@
       <a href="https://www.creo.ua/web-design?utm_source=golovsait" target="_blank" rel="noopener" class="course reveal">
         <div class="course-cover"><img src="https://cdn.prod.website-files.com/666c1755b3b2b87c59a6e91f/6773c47aa04772d5888b0f9c_Mask%20group-3.png" alt="UX/UI Designer +webflow"></div>
         <div class="course-body">
-          <div class="chips"><span class="chip blue">UX/UI</span><span class="chip green">Webflow</span></div>
+          <div class="chips"><span class="chip blue">UX/UI</span><span class="chip lime">Webflow</span></div>
           <h3>Freelancer UX/UI Designer +webflow</h3>
           <p>Проєктуй інтерфейси та запускай сайти на Webflow без коду.</p>
           <div class="course-foot"><span class="dur">⏱ 6 місяців</span><span class="more">Детальніше →</span></div>
@@ -580,8 +589,8 @@
       <p class="sec-sub">CREO — це не просто курси, а спільнота людей, які обирають свободу, творчість і роботу на себе. За 6 років ми допомогли тисячам студентів змінити життя.</p>
       <div class="about-features">
         <div class="af"><div class="ic" style="background:rgba(47,107,255,.1)">🎯</div><div><h4>80% практики</h4><p>Реальні проєкти з перших занять</p></div></div>
-        <div class="af"><div class="ic" style="background:rgba(124,92,255,.1)">💼</div><div><h4>Вихід на фріланс</h4><p>Перші клієнти ще під час навчання</p></div></div>
-        <div class="af"><div class="ic" style="background:rgba(24,192,138,.12)">🏆</div><div><h4>Підтримка кар'єри</h4><p>Вакансії, ревʼю та роботодавці</p></div></div>
+        <div class="af"><div class="ic" style="background:rgba(249,89,249,.13)">💼</div><div><h4>Вихід на фріланс</h4><p>Перші клієнти ще під час навчання</p></div></div>
+        <div class="af"><div class="ic" style="background:rgba(180,236,30,.22)">🏆</div><div><h4>Підтримка кар'єри</h4><p>Вакансії, ревʼю та роботодавці</p></div></div>
         <div class="af"><div class="ic" style="background:rgba(255,155,47,.13)">🤝</div><div><h4>Жива спільнота</h4><p>Тисячі однодумців поруч</p></div></div>
       </div>
     </div>
@@ -593,16 +602,16 @@
   <div class="wrap">
     <div class="sec-head center">
       <span class="sec-tag">Власна платформа</span>
-      <h2 class="sec-title">Навчаємо на власній гейміфікованій платформі</h2>
+      <h2 class="sec-title">Навчаємо на власній <span class="hl hl-pink">гейміфікованій</span> платформі</h2>
       <p class="sec-sub">Ми перетворили навчання на захопливу гру: заробляй CREO-коїни, прокачуй аватар і конкуруй у рейтингу.</p>
     </div>
     <div class="platform-main">
       <div class="platform-shot reveal"><img src="https://cdn.prod.website-files.com/626fc70a78a2e44c54a1a427/66604fe53c9fa001a239fb55_platform.png" alt="Платформа CREO"></div>
       <div class="pfeatures">
-        <div class="pf-item reveal"><div class="ic">🪙</div><div><h4>Система CREO-коїнів</h4><p>Заробляй внутрішню валюту за активність та обмінюй на бонуси й привілеї.</p></div></div>
-        <div class="pf-item reveal"><div class="ic">👤</div><div><h4>Персональний аватар</h4><p>Налаштовуй персонажа й прокачуй його разом із навичками.</p></div></div>
+        <div class="pf-item reveal"><div class="ic" style="background:linear-gradient(135deg,#b4ec1e,#86c40e)">🪙</div><div><h4>Система CREO-коїнів</h4><p>Заробляй внутрішню валюту за активність та обмінюй на бонуси й привілеї.</p></div></div>
+        <div class="pf-item reveal"><div class="ic" style="background:linear-gradient(135deg,#f959f9,#c43bd6)">👤</div><div><h4>Персональний аватар</h4><p>Налаштовуй персонажа й прокачуй його разом із навичками.</p></div></div>
         <div class="pf-item reveal"><div class="ic">📅</div><div><h4>Планувальник занять</h4><p>Зручний розклад із нагадуваннями про уроки.</p></div></div>
-        <div class="pf-item reveal"><div class="ic">🏅</div><div><h4>Рейтинг і досягнення</h4><p>Збирай бейджі, конкуруй з іншими та потрапляй у топ школи.</p></div></div>
+        <div class="pf-item reveal"><div class="ic" style="background:linear-gradient(135deg,#ff9b2f,#f959f9)">🏅</div><div><h4>Рейтинг і досягнення</h4><p>Збирай бейджі, конкуруй з іншими та потрапляй у топ школи.</p></div></div>
       </div>
     </div>
   </div>
@@ -612,14 +621,14 @@
 <section class="career" id="career">
   <div class="wrap">
     <div class="sec-head center">
-      <span class="sec-tag">Підтримка кар'єри</span>
-      <h2 class="sec-title">Допоможемо знайти роботу або вийти на фріланс</h2>
+      <span class="sec-tag pink">Підтримка кар'єри</span>
+      <h2 class="sec-title">Допоможемо знайти роботу або <span class="hl hl-lime">вийти на фріланс</span></h2>
       <p class="sec-sub">CREO супроводжує тебе й після випуску — щоб навчання перетворилося на дохід.</p>
     </div>
     <div class="career-grid">
       <div class="ccard reveal"><div class="ic" style="background:rgba(47,107,255,.1)">👥</div><h3>Creo-People</h3><p>Спільнота дизайнерів для спілкування, нетворкінгу та натхнення.</p></div>
-      <div class="ccard reveal"><div class="ic" style="background:rgba(124,92,255,.1)">🚀</div><h3>Freelance Challenge</h3><p>Програма виходу на фріланс і отримання першого реального клієнта.</p></div>
-      <div class="ccard reveal"><div class="ic" style="background:rgba(24,192,138,.12)">💰</div><h3>Прямі клієнти</h3><p>Регулярні замовлення від клієнтів напряму для наших студентів.</p></div>
+      <div class="ccard reveal"><div class="ic" style="background:rgba(249,89,249,.13)">🚀</div><h3>Freelance Challenge</h3><p>Програма виходу на фріланс і отримання першого реального клієнта.</p></div>
+      <div class="ccard reveal"><div class="ic" style="background:rgba(180,236,30,.22)">💰</div><h3>Прямі клієнти</h3><p>Регулярні замовлення від клієнтів напряму для наших студентів.</p></div>
       <div class="ccard reveal"><div class="ic" style="background:rgba(255,155,47,.13)">🎯</div><h3>Кар'єрний відділ</h3><p>Щотижневі вакансії, CV-ревʼю та партнери-роботодавці.</p></div>
     </div>
   </div>
@@ -630,7 +639,7 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-tag">Викладачі</span>
-      <h2 class="sec-title">В нас викладають справжні профі</h2>
+      <h2 class="sec-title">В нас викладають <span class="hl hl-pink">справжні профі</span></h2>
       <p class="sec-sub">Практикуючі спеціалісти: власники студій, лауреати міжнародних нагород і топові фрілансери.</p>
     </div>
   </div>
@@ -652,8 +661,8 @@
 <section class="free" id="free">
   <div class="wrap">
     <div class="sec-head center">
-      <span class="sec-tag">Без оплати</span>
-      <h2 class="sec-title">Почніть безкоштовно</h2>
+      <span class="sec-tag lime">Без оплати</span>
+      <h2 class="sec-title">Почніть <span class="hl hl-lime">безкоштовно</span></h2>
       <p class="sec-sub">Спробуй формат навчання й зроби перший крок у дизайн без жодного ризику.</p>
     </div>
     <div class="free-grid">
@@ -677,8 +686,8 @@
 <section class="reviews" id="reviews">
   <div class="wrap">
     <div class="sec-head center">
-      <span class="sec-tag">Відгуки</span>
-      <h2 class="sec-title">Що про нас говорять наші студенти</h2>
+      <span class="sec-tag pink">Відгуки</span>
+      <h2 class="sec-title">Що про нас говорять <span class="hl hl-pink">наші студенти</span></h2>
       <p class="sec-sub">Понад 8000 випускників — і ось лише деякі з їхніх історій.</p>
     </div>
     <div class="filters" style="justify-content:center">
@@ -734,8 +743,8 @@
 <section class="portfolio" id="portfolio">
   <div class="wrap">
     <div class="sec-head center">
-      <span class="sec-tag">Портфоліо</span>
-      <h2 class="sec-title">Що створюють наші студенти</h2>
+      <span class="sec-tag lime">Портфоліо</span>
+      <h2 class="sec-title">Що створюють <span class="hl hl-lime">наші студенти</span></h2>
       <p class="sec-sub">Реальні роботи випускників CREO у різних напрямках дизайну.</p>
     </div>
     <div class="pf-grid">
@@ -756,7 +765,7 @@
     <div class="sec-top">
       <div class="sec-head">
         <span class="sec-tag">Блог</span>
-        <h2 class="sec-title">Корисне про дизайн</h2>
+        <h2 class="sec-title">Корисне про <span class="hl hl-pink">дизайн</span></h2>
         <p class="sec-sub">Гайди, інструменти та інсайти для дизайнерів.</p>
       </div>
       <a href="#" class="btn btn-ghost">Усі статті →</a>
@@ -773,7 +782,7 @@
 <section class="final">
   <div class="wrap">
     <div class="final-box reveal">
-      <h2>Готовий змінити <span class="g">майбутнє</span>?</h2>
+      <h2>Готовий змінити <span class="hl hl-lime">майбутнє</span>?</h2>
       <p>Приєднуйся до 8000+ студентів, які вже будують кар'єру у дизайні разом із CREO.</p>
       <div class="btns">
         <a href="#courses" class="btn btn-primary btn-lg">Обрати курс</a>
